@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
+import { useNavigate , useLocation} from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +8,39 @@ const Login = () => {
   const [error, setError] = useState(''); 
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const errorMsg = searchParams.get('error');
+    console.log(errorMsg);
+    if (errorMsg) {
+      setError(errorMsg);
+    }
+  }, [location.search]);
+
+  useEffect(() => {
+    navigate('/auth/login');
+  }, []);
+
+  const handleOauth = async (e) => {
+    e.preventDefault();
+  
+    try {
+      const redirectUrl = `${import.meta.env.VITE_HOST_NAME}/auth/google`;
+      if (!import.meta.env.VITE_HOST_NAME) {
+        throw new Error("OAuth host name is not defined. Please check your environment variables.");
+      }
+
+      window.location.href = redirectUrl;
+    } catch (error) {
+      console.error("Error during OAuth redirection:", error.message);
+      setError(error.response?.data?.message || 'An error occurred. Please try again.');
+    } finally {
+      setLoading(false); 
+    }
+  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,7 +121,8 @@ const Login = () => {
 
           <div className="mt-4 flex justify-center">
             <button
-              onClick={() => {navigate('/auth/google')}}
+              onClick={handleOauth}
+              disabled={loading} 
               className="bg-white text-black font-bold py-2 px-6 sm:px-8 rounded-lg flex items-center justify-center space-x-2 hover:bg-gray-100 transition duration-300"
             >
               <img
@@ -96,7 +130,7 @@ const Login = () => {
                 alt="Google Logo"
                 className="w-4 sm:w-6 h-4 sm:h-6"
               />
-              <span className="text-sm sm:text-base">Login with Google</span>
+              <span className="text-sm sm:text-base">{loading ? 'Loading...' : 'Login with Google'}</span>
             </button>
           </div>
 

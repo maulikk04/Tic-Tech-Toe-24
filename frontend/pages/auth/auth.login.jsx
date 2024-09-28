@@ -13,7 +13,6 @@ const Login = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const errorMsg = searchParams.get('error');
-    console.log(errorMsg);
     if (errorMsg) {
       setError(errorMsg);
     }
@@ -45,23 +44,22 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(''); 
-
+  
     if (!email || !password) {
       setError('All fields are required');
       return; 
     }
-
+  
     setLoading(true);  
-
     try {
       const response = await axios.post(`${import.meta.env.VITE_HOST_NAME}/auth/login`, {
         email,
         password,
       });
 
-      if (response.ok) {
+      if (response.status === 200) { 
         console.log('Login successful', response.data);
-        navigate('/dashboard');
+        navigate('/dashboard'); 
       }
     } catch (error) {
       console.error('Error logging in:', error.response?.data || error.message);
@@ -70,6 +68,7 @@ const Login = () => {
       setLoading(false); 
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-[url('../utils/Images/bg_image.jpeg')] bg-cover flex items-center justify-center">

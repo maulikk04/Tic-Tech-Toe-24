@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className="flex items-center space-x-4">
           <button
             className="bg-green-500 text-black rounded-full w-8 h-8 flex items-center justify-center"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {setIsModalOpen(true)}}
           >
             +
           </button>

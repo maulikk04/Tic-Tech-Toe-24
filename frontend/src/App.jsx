@@ -9,12 +9,13 @@ import ResetPassword from "../pages/auth/auth.reset-password";
 const App = () => {
   return (
     <Routes>
+      <Route path="/" element={<Login />}/>
       <Route path="/auth/signup" element={<Signup />}/>
       <Route path="/auth/login" element={<Login />}/>
       <Route path="/auth/forget-password" element={<ForgetPassword />}/>
       <Route path="/auth/reset-password" element={<ResetPassword />}/>
       <Route path="/auth/google" element={<Google />}/>
-      <Route path="/dashboard" element={<Dashboard />}/>
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   )
 }

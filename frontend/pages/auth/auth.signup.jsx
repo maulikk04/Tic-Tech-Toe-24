@@ -9,9 +9,9 @@ const Signup = () => {
     institute: "",
   });
 
-  const [loading, setLoading] = useState(false); // Add loading state
-  const [error, setError] = useState(""); // Add error state
-  const [success, setSuccess] = useState(false); // Add success state
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); 
+  const [success, setSuccess] = useState(false); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,16 +23,15 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");  // Clear previous error message
-    setSuccess(false);  // Reset success state
+    setError("");  
+    setSuccess(false);  
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match!");
       return;
     }
 
-    setLoading(true); // Start loading when form is submitted
+    setLoading(true); 
 
-    // Send form data to the API
     try {
       const response = await fetch("http://localhost:4000/auth/signup", {
         method: "POST",
@@ -51,17 +50,15 @@ const Signup = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Registration successful
         setSuccess(true);
         console.log("Signup successful:", data);
       } else {
-        // Handle error
         setError(data.message || "Something went wrong!");
       }
     } catch (err) {
       setError("Network error. Please try again.");
     } finally {
-      setLoading(false); // Stop loading after request is finished
+      setLoading(false); 
     }
   };
 
@@ -71,6 +68,7 @@ const Signup = () => {
         <h2 className="text-center text-xl sm:text-3xl mb-8 mt-4 sm:mt-0 sm:mb-12 text-white">Sign Up</h2>
         {error && <p className="text-red-500 mb-4 text-center">{error}</p>} {/* Display error */}
         {success && <p className="text-green-500 mb-4 text-center">Signup successful!</p>} {/* Display success message */}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-8">
             <div className="relative">
@@ -83,7 +81,7 @@ const Signup = () => {
                 placeholder="Enter username"
                 required
               />
-              <div className="absolute bottom-0 left-0 h-0.5 w-full bg-white opacity-100"></div> {/* Thinner line */}
+              <div className="absolute bottom-0 left-0 h-0.5 w-full bg-white opacity-100"></div> 
             </div>
           </div>
 

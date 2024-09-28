@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CreateClassModal = ({ onClose }) => {
   const [courseName, setCourseName] = useState('');
@@ -8,40 +9,49 @@ const CreateClassModal = ({ onClose }) => {
   const [details, setDetails] = useState('');
   const [stream, setStream] = useState('');
   const [year, setYear] = useState('');
-  const [TAs, setTAs] = useState(['']);
+  const [TA, setTA] = useState(['']);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleTAChange = (index, value) => {
-    const newTAs = [...TAs];
-    newTAs[index] = value;
-    setTAs(newTAs);
+    const newTA = [...TA];
+    newTA[index] = value;
+    setTA(newTA);
   };
 
-  const addTAField = () => setTAs([...TAs, '']);
-  const removeTAField = (index) => setTAs(TAs.filter((_, i) => i !== index));
+  const addTAField = () => setTA([...TA, '']);
+  const removeTAField = (index) => setTA(TA.filter((_, i) => i !== index));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (!courseName || !courseCode || !strength || !details || !stream || !year || !TAs) {
+    if (!courseName || !courseCode || !strength || !details || !stream || !year || !TA) {
       setError('All fields are required');
       return;
     }
 
     setLoading(true);
-    const classData = { courseName, courseCode, strength, details, stream, year, TAs };
+    const classData = { courseName, courseCode, strength, details, stream, year, TA };
 
     try {
-      // Function to get a specific cookie by name
-      // const allCookies = document.cookie;
-      // console.log('All Cookies:', allCookies);
+     
 
-      const response = await axios.post(`${import.meta.env.VITE_HOST_NAME}/classroom/create`, classData);
-
-      if (response.ok) {
+      const response = await axios.post(`${import.meta.env.VITE_HOST_NAME}/classroom/create`, classData,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }});
+      if (response.status === 200) {
         console.log('class created successfully!', response.data);
+        setCourseName('');
+        setCourseCode('');
+        setStrength('');
+        setDetails('');
+        setStream('');
+        setYear('');
+        setTA(['']);
+        navigate('/dashboard');
         onClose(false);
       }
     } catch (error) {
@@ -135,8 +145,8 @@ const CreateClassModal = ({ onClose }) => {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-lg">Teaching Assistants (TAs):</label>
-                {TAs.map((ta, index) => (
+                <label className="text-lg">Teaching Assistants (TA):</label>
+                {TA.map((ta, index) => (
                   <div key={index} className="flex items-center space-x-2 mb-2">
                     <input
                       type="text"

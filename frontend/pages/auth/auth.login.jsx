@@ -16,11 +16,13 @@ const Login = () => {
     if (errorMsg) {
       setError(errorMsg);
     }
+    const token = searchParams.get('token');
+    if (token) {
+      localStorage.setItem('token', token);
+      console.log('Token stored successfully:', token);
+      navigate('/dashboard'); // Redirect to the dashboard or another page after storing the token
+    }
   }, [location.search]);
-
-  useEffect(() => {
-    navigate('/auth/login');
-  }, []);
 
   const handleOauth = async (e) => {
     e.preventDefault();
@@ -58,6 +60,7 @@ const Login = () => {
       });
 
       if (response.status === 200) { 
+        localStorage.setItem('token', response.data.token);
         console.log('Login successful', response.data);
         navigate('/dashboard'); 
       }

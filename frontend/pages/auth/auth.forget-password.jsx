@@ -18,7 +18,7 @@ const ForgetPassword = () => {
 
     try {
       // Make API call to send verification email
-      const response = await fetch("/api/forget-password", {
+      const response = await fetch("http://localhost:4000/auth/forgot-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

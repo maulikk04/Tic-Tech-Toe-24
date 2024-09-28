@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -52,6 +54,7 @@ const Signup = () => {
       if (response.ok) {
         setSuccess(true);
         console.log("Signup successful:", data);
+        navigate('/auth/login');
       } else {
         setError(data.message || "Something went wrong!");
       }
@@ -65,7 +68,8 @@ const Signup = () => {
   return (
     <div className="bg-[url('../utils/Images/bg_image.jpeg')] bg-cover min-h-screen flex justify-center items-center">
       <div className="w-full max-w-md p-8 shadow-lg border-l-[25px] border-r-[25px] border-t-[25px] border-b-[25px] border-t-[#61381a] border-b-[#61381a] border-l-[#744b2b] border-r-[#744b2b] backdrop-blur-3xl relative font-chalk">
-        <h2 className="text-center text-xl sm:text-3xl mb-8 mt-4 sm:mt-0 sm:mb-12 text-white">Sign Up</h2>
+      <span onClick={() => {navigate('/auth/login')}} className="absolute right-2 top-0 text-emerald-500 text-md sm:text-lg border-b-2 border-l-2 pl-2 pb-1 cursor-pointer">Login</span>
+        <h2 className="text-center text-xl sm:text-2xl mb-4 mt-4 sm:mt-0 sm:mb-7 text-white font-bold">Welcome to TeachEase!</h2>
         {error && <p className="text-red-500 mb-4 text-center">{error}</p>} {/* Display error */}
         {success && <p className="text-green-500 mb-4 text-center">Signup successful!</p>} {/* Display success message */}
 

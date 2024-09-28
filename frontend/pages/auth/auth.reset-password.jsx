@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom'; // to access token
+import { useParams, useNavigate } from 'react-router-dom'; // to access token
 
 const ResetPassword = () => {
   const { token } = useParams(); // Extract token from the URL
@@ -7,6 +7,7 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ const ResetPassword = () => {
 
       if (response.ok) {
         setSuccess(true);
-        // Optionally redirect to login page after successful reset
+        navigate('/auth/login');
       } else {
         setError(data.message);
       }

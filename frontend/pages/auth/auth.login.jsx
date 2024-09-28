@@ -72,8 +72,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black bg-cover flex items-center justify-center">
-      <div className="bg-blackboard border-[20px] border-x-[#744b2b] border-y-[#61381a] p-6 sm:p-8 w-full max-w-md sm:max-w-md text-white font-chalk relative">
+    <div className="min-h-screen bg-[url('../utils/Images/bg_image.jpeg')] bg-cover flex items-center justify-center">
+      <div className="backdrop-blur-3xl border-[20px] border-x-[#744b2b] border-y-[#61381a] p-6 sm:p-8 w-full max-w-md sm:max-w-md text-white font-chalk relative">
         <span onClick={() => {navigate('/auth/signup')}} className="absolute right-2 top-0 text-emerald-500 text-md sm:text-lg border-b-2 border-l-2 pl-2 pb-1 cursor-pointer">sign up</span>
         <h1 className="text-center text-xl sm:text-3xl mb-8 mt-4 sm:mt-0 sm:mb-12">Welcome Back!</h1>
         <form className="text-center space-y-6 sm:space-y-8">

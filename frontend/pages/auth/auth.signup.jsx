@@ -63,21 +63,21 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black font-chalk text-white">
-      <div className="w-full max-w-xl p-8 shadow-lg border-l-[25px] border-r-[25px] border-t-[25px] border-b-[25px] border-t-[#61381a] border-b-[#61381a] border-l-[#744b2b] border-r-[#744b2b] bg-[#2b2b2b]"> {/* Custom borders */}
-        <h2 className="text-4xl text-center font-bold mb-4">Sign Up</h2>
-        {error && <p className="text-red-500 mb-4">{error}</p>} 
-        {success && <p className="text-green-500 mb-4">Signup successful!</p>} 
+    <div className="bg-[url('../utils/Images/bg_image.jpeg')] bg-cover min-h-screen flex justify-center items-center">
+      <div className="w-full max-w-md p-8 shadow-lg border-l-[25px] border-r-[25px] border-t-[25px] border-b-[25px] border-t-[#61381a] border-b-[#61381a] border-l-[#744b2b] border-r-[#744b2b] backdrop-blur-3xl relative font-chalk">
+        <h2 className="text-center text-xl sm:text-3xl mb-8 mt-4 sm:mt-0 sm:mb-12 text-white">Sign Up</h2>
+        {error && <p className="text-red-500 mb-4 text-center">{error}</p>} {/* Display error */}
+        {success && <p className="text-green-500 mb-4 text-center">Signup successful!</p>} {/* Display success message */}
+
         <form onSubmit={handleSubmit}>
-          <div className="mb-4 flex items-center">
-            <label className="w-1/3 mb-2 text-xl font-medium text-white">Username</label>
-            <div className="w-2/3 relative">
+          <div className="mb-8">
+            <div className="relative">
               <input
                 type="text"
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full bg-transparent border-none focus:outline-none text-center text-xl"
+                className="w-full bg-transparent border-none focus:outline-none text-center text-xl text-white"
                 placeholder="Enter username"
                 required
               />
@@ -85,15 +85,14 @@ const Signup = () => {
             </div>
           </div>
 
-          <div className="mb-4 flex items-center">
-            <label className="w-1/3 mb-2 text-xl font-medium text-white">Email</label>
-            <div className="w-2/3 relative">
+          <div className="mb-8">
+            <div className="relative">
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full bg-transparent border-none focus:outline-none text-center text-xl"
+                className="w-full bg-transparent border-none focus:outline-none text-center text-xl text-white"
                 placeholder="Enter email"
                 required
               />
@@ -101,15 +100,14 @@ const Signup = () => {
             </div>
           </div>
 
-          <div className="mb-4 flex items-center">
-            <label className="w-1/3 mb-2 text-xl font-medium text-white">Password</label>
-            <div className="w-2/3 relative">
+          <div className="mb-8">
+            <div className="relative">
               <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full bg-transparent border-none focus:outline-none text-center text-xl"
+                className="w-full bg-transparent border-none focus:outline-none text-center text-xl text-white"
                 placeholder="Enter Password"
                 required
               />
@@ -117,15 +115,14 @@ const Signup = () => {
             </div>
           </div>
 
-          <div className="mb-4 flex items-center">
-            <label className="w-1/3 mb-2 text-xl font-medium text-white">Confirm Password</label>
-            <div className="w-2/3 relative">
+          <div className="mb-8">
+            <div className="relative">
               <input
                 type="password"
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full bg-transparent border-none focus:outline-none text-center text-xl"
+                className="w-full bg-transparent border-none focus:outline-none text-center text-xl text-white"
                 placeholder="Confirm Password"
                 required
               />
@@ -133,15 +130,14 @@ const Signup = () => {
             </div>
           </div>
 
-          <div className="mb-10 flex items-center">
-            <label className="w-1/3 mb-2 text-xl font-medium text-white">Institute</label>
-            <div className="w-2/3 relative">
+          <div className="mb-10">
+            <div className="relative">
               <input
                 type="text"
                 name="institute"
                 value={formData.institute}
                 onChange={handleChange}
-                className="w-full bg-transparent border-none focus:outline-none text-center text-xl"
+                className="w-full bg-transparent border-none focus:outline-none text-center text-xl text-white"
                 placeholder="Enter institute name"
                 required
               />
@@ -149,8 +145,7 @@ const Signup = () => {
             </div>
           </div>
 
-          {/* Center the button */}
-          <div className="flex justify-center w-full">
+          <div className="flex justify-center">
             <button
               type="submit"
               className=" bg-green-500 hover:opacity-80 text-black font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"

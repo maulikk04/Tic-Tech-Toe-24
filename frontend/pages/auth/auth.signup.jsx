@@ -34,15 +34,16 @@ const Signup = () => {
 
     // Send form data to the API
     try {
-      const response = await fetch("/OAuth/signup", {
+      const response = await fetch("http://localhost:4000/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: formData.username,
+          name: formData.username,
           email: formData.email,
           password: formData.password,
+          confirmPassword: formData.confirmPassword,
           institute: formData.institute,
         }),
       });

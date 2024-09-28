@@ -7,6 +7,7 @@ const uri = process.env.MONGO_URI;
 const passport = require('passport')
 const routes = require('./routes/authroutes')
 const classroutes = require('./routes/classroutes');
+const taskroutes = require('./routes/taskroute');
 const session = require('express-session');
 const cors = require('cors');
 const cookie = require('cookie-parser');
@@ -30,6 +31,7 @@ app.use('/classroom', classroutes)
 app.get('/dashboard',(req,res)=>{
     res.json({json:"dashboard"});
 })
+app.use('/task',taskroutes);
 mongoose.connect(uri)
     .then(() => {
         console.log('connected to database')

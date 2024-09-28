@@ -133,7 +133,7 @@ const Login = () => {
 
           <div className="text-xs sm:text-sm flex justify-center mt-4">
             <a
-              onClick={() => {navigate('/auth/forget-password')}} 
+              onClick={() => {navigate('/auth/forgot-password')}} 
               className="font-medium text-blue-500 hover:text-blue-400 cursor-pointer"
             >
               Forgot Password?

@@ -9,8 +9,8 @@ const CreateClassModal = ({ onClose }) => {
   const [stream, setStream] = useState('');
   const [year, setYear] = useState('');
   const [TAs, setTAs] = useState(['']);
-  const [loading, setLoading] = useState(false); 
-  const [error, setError] = useState(''); 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleTAChange = (index, value) => {
     const newTAs = [...TAs];
@@ -23,28 +23,33 @@ const CreateClassModal = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); 
+    setError('');
 
     if (!courseName || !courseCode || !strength || !details || !stream || !year || !TAs) {
       setError('All fields are required');
-      return; 
+      return;
     }
 
-    setLoading(true);  
+    setLoading(true);
     const classData = { courseName, courseCode, strength, details, stream, year, TAs };
-  
-    try {
-        const response = await axios.post(`${import.meta.env.VITE_HOST_NAME}/classroom/create`, classData);
 
-        if (response.ok) {
+    try {
+      // Function to get a specific cookie by name
+      // const allCookies = document.cookie;
+      // console.log('All Cookies:', allCookies);
+
+      const response = await axios.post(`${import.meta.env.VITE_HOST_NAME}/classroom/create`, classData);
+
+      if (response.ok) {
         console.log('class created successfully!', response.data);
         onClose(false);
-        }
+      }
     } catch (error) {
-        console.error('Error creating classroom:', error.response?.data || error.message);
-        setError(error.response?.data?.message || 'An error occurred. Please try again.');
+      console.log(error)
+      console.error('Error creating classroom:', error.response?.data || error.message);
+      setError(error.response?.data?.message || 'An error occurred. Please try again.');
     } finally {
-        setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -173,7 +178,7 @@ const CreateClassModal = ({ onClose }) => {
             Create
           </button>
           <button
-            onClick={() => {onClose(false)}}
+            onClick={() => { onClose(false) }}
             className="bg-red-400 text-black font-bold py-2 px-8 rounded-lg hover:bg-red-500 transition duration-300"
           >
             Cancel

@@ -19,7 +19,8 @@ const ResetPassword = () => {
 
     // Sending the new password along with the reset token to the backend
     try {
-      const response = await fetch(`/api/reset-password/${token}`, {
+      console.log(token)
+      const response = await fetch(`http://localhost:4000/auth/reset-password/${token}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),

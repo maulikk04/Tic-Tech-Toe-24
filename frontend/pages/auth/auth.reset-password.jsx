@@ -30,7 +30,6 @@ const ResetPassword = () => {
       if (response.ok) {
         setSuccess(true);
         navigate('/auth/login');
-        // Optionally redirect to login page after successful reset
       } else {
         setError(data.message);
       }

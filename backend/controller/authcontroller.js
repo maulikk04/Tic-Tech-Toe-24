@@ -54,13 +54,12 @@ const login_post = async (req, res) => {
         }
         const isMatch = await bcrypt.compare(password, data.password);
         if (!isMatch) {
-            console.log(1)
             return res.status(401).json({ message: "Enter valid password" });
         }
         const token = jwt.sign({ _id: data._id }, process.env.JWT_SECRET, {
             expiresIn: "24h"
         })
-        res.cookie('jwt', token, {
+        res.cookie('token', token, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
         })
@@ -90,7 +89,7 @@ const sendresetpasswordmail = async (name, email, token) => {
             from: process.env.email,
             to: email,
             subject: 'For reset password',
-            html: '<p>Hii, ' + name + ', Plesae copy the link and <a href="http://localhost:4000/auth/reset-password?token=' + token + '"> reset your password </a>'
+            html: '<p>Hii, ' + name + ', Plesae copy the link and <a href="http://localhost:5173/auth/reset-password/' + token + '"> reset your password </a>'
         }
 
         transporter.sendMail(mailOptions, function (error, info) {
@@ -139,7 +138,9 @@ const forgotPassword = async (req, res) => {
 
 const resetPassword = async (req, res) => {
     try {
-        const token = req.query.token;
+        // console.log(req.params)
+        const token = req.params.token;
+        // console.log(`from backend ${token}`)
         const tokendata = await Token.findOne({ token: token });
         if (tokendata) {
             const password = req.body.password;

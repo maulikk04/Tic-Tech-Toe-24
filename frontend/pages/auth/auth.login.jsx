@@ -59,7 +59,7 @@ const Login = () => {
         password,
       });
 
-      if (response.status === 200) {
+      if (response.ok) {
         console.log('Login successful', response.data);
         navigate('/dashboard');
       }
@@ -73,28 +73,26 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-black bg-cover flex items-center justify-center">
-      <div className="bg-blackboard border-[20px] border-x-[#744b2b] border-y-[#61381a] p-6 sm:p-8 w-full max-w-lg sm:max-w-xl text-white font-chalk relative">
-        <span className="absolute right-2 top-0 text-emerald-500 text-md sm:text-lg border-b-2 border-l-2 pl-2 pb-1">sign up</span>
-        <h1 className="text-center text-xl sm:text-3xl mb-8 mt-4 sm:mt-0 sm:mb-12">Welcome to TeachEase!</h1>
+      <div className="bg-blackboard border-[20px] border-x-[#744b2b] border-y-[#61381a] p-6 sm:p-8 w-full max-w-md sm:max-w-md text-white font-chalk relative">
+        <span onClick={() => {navigate('/auth/signup')}} className="absolute right-2 top-0 text-emerald-500 text-md sm:text-lg border-b-2 border-l-2 pl-2 pb-1 cursor-pointer">sign up</span>
+        <h1 className="text-center text-xl sm:text-3xl mb-8 mt-4 sm:mt-0 sm:mb-12">Welcome Back!</h1>
         <form className="text-center space-y-6 sm:space-y-8">
 
           <div className="flex flex-col sm:flex-row">
-            <label className="text-sm sm:text-lg md:text-xl mr-0 sm:mr-3 w-1/4 sm:w-1/4 text-left mb-2 sm:mb-0">E-mail:</label>
             <input
               type="email"
               placeholder="Enter Email"
-              className="w-full sm:w-3/4 text-base sm:text-xl bg-transparent border-b-2 border-white placeholder-gray-400 text-center text-white outline-none"
+              className="w-full text-base sm:text-xl bg-transparent border-b-2 border-white placeholder-gray-400 text-center text-white outline-none"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center">
-            <label className="text-sm sm:text-lg md:text-xl mr-0 sm:mr-3 w-full sm:w-1/4 text-left mb-2 sm:mb-0">Password:</label>
             <input
               type="password"
               placeholder="Enter Password"
-              className="w-full sm:w-3/4 text-base sm:text-xl bg-transparent border-b-2 border-white placeholder-gray-400 text-center text-white outline-none"
+              className="w-full text-base sm:text-xl bg-transparent border-b-2 border-white placeholder-gray-400 text-center text-white outline-none"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -146,7 +144,7 @@ const Login = () => {
           <img
             src="../Utils/Images/duster.png"
             alt="Duster Image"
-            className="w-28 sm:w-40 absolute right-0 bottom-[0px] sm:bottom-[-20px] rotate-[44deg]"
+            className="w-20 sm:w-32 absolute right-0 bottom-[0px] sm:bottom-[-20px] rotate-[44deg]"
           />
         </form>
       </div>

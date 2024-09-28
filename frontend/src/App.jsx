@@ -8,12 +8,12 @@ import Dashboard from "../pages/Dashboard/dashboard";
 const App = () => {
   return (
     <Routes>
+      <Route path="/" element={<Login />}/>
       <Route path="/auth/signup" element={<Signup />}/>
       <Route path="/auth/login" element={<Login />}/>
       <Route path="/auth/forget-password" element={<ForgetPassword />}/>
       <Route path="/auth/google" element={<Google />}/>
-
-      <Route path="/dashboard" element={<Dashboard />}/>
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   )
 }

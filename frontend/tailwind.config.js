@@ -12,7 +12,7 @@ export default {
         'blackboard-bg': "url('https://www.shutterstock.com/shutterstock/videos/1028158454/thumb/6.jpg?ip=x480')", 
       },
       fontFamily: {
-        'chalk': ['"Permanent Marker"', 'cursive'],
+        'chalk': ['"Edu AU VIC WA NT Hand", cursive'],
       },
       colors: {
         blackboard: '#2B2B2B', 

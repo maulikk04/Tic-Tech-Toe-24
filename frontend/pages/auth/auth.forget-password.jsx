@@ -12,12 +12,11 @@ const ForgetPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");  // Clear previous error message
-    setSuccess(false);  // Reset success state
-    setLoading(true); // Start loading when form is submitted
+    setError("");  
+    setSuccess(false); 
+    setLoading(true); 
 
     try {
-      // Make API call to send verification email
       const response = await fetch("/api/forget-password", {
         method: "POST",
         headers: {

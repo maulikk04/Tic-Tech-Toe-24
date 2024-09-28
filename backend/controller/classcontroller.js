@@ -11,7 +11,6 @@ const generateClassCode = () => {
 
 const createClass = async(req,res)=>{
     try {
-        console.log(res);
         const teacherId = req.user._id;
         const {courseName,courseCode,strength,stream,year,TA,details} = req.body;
         const classCode = generateClassCode();

@@ -7,8 +7,9 @@ const Token = require('../model/tokenmodel');
 const bcrypt = require('bcrypt');
 
 const errorhandel = (err) => {
-    if(err.errors === NULL)
-        return err.message;
+    console.log(err.errors)
+    // if(err.errors === NULL)
+    //     return err.message;
     let error_message = '';
     Object.values(err.errors).forEach(({ properties }) => {
         error_message = properties.message

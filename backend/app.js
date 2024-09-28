@@ -6,19 +6,23 @@ const passportsetup = require('./middleware/passport_setup');
 const uri = process.env.MONGO_URI;
 const passport = require('passport')
 const routes = require('./routes/authroutes')
+const classroutes = require('./routes/classroutes');
 const session = require('express-session');
 const cors = require('cors');
+const cookie = require('cookie-parser');
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
 app.use(cors());
+app.use(cookie());
 app.use(express.json()); 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', routes)
+app.use('/classroom', classroutes)
 app.get('/dashboard',(req,res)=>{
     res.json({json:"dashboard"});
 })
